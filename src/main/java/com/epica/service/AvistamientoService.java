@@ -5,6 +5,8 @@ import com.epica.model.Avistamiento;
 import com.epica.repository.AvistamientoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AvistamientoService {
 
@@ -15,14 +17,17 @@ public class AvistamientoService {
     }
 
     public Avistamiento crearAvistamiento(AvistamientoDto avistamientoDto) {
-
         Avistamiento avistamiento = new Avistamiento();
-
         avistamiento.setEspecie(avistamientoDto.getEspecie());
         avistamiento.setUbicacion(avistamientoDto.getUbicacion());
         avistamiento.setFecha(avistamientoDto.getFecha());
         avistamiento.setObservaciones(avistamientoDto.getObservaciones());
 
         return avistamientoRepository.save(avistamiento);
+    }
+
+    // --- NUEVO MÉTODO PARA HU-002 ---
+    public List<Avistamiento> obtenerTodos() {
+        return avistamientoRepository.findAll();
     }
 }

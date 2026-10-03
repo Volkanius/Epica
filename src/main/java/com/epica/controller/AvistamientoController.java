@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/avistamientos")
 public class AvistamientoController {
@@ -28,5 +30,12 @@ public class AvistamientoController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(avistamiento);
+    }
+
+    // --- NUEVO ENDPOINT PARA HU-002 ---
+    @GetMapping
+    public ResponseEntity<List<Avistamiento>> obtenerTodos() {
+        List<Avistamiento> avistamientos = avistamientoService.obtenerTodos();
+        return ResponseEntity.ok(avistamientos);
     }
 }
